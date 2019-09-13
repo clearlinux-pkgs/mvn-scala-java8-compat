@@ -4,15 +4,18 @@
 #
 Name     : mvn-scala-java8-compat
 Version  : 0.7.0
-Release  : 1
+Release  : 2
 URL      : https://github.com/scala/scala-java8-compat/archive/v0.7.0.tar.gz
 Source0  : https://github.com/scala/scala-java8-compat/archive/v0.7.0.tar.gz
 Source1  : https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.jar
 Source2  : https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.pom
+Source3  : https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar
+Source4  : https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : Apache-2.0
+License  : Apache-2.0 BSD-3-Clause
 Requires: mvn-scala-java8-compat-data = %{version}-%{release}
+Requires: mvn-scala-java8-compat-license = %{version}-%{release}
 
 %description
 ## scala-java8-compat [<img src="https://img.shields.io/travis/scala/scala-java8-compat.svg"/>](https://travis-ci.org/scala/scala-java8-compat) [<img src="https://img.shields.io/maven-central/v/org.scala-lang.modules/scala-java8-compat_2.11*.svg?label=latest%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.scala-lang.modules%20a%3Ascala-java8-compat_2.11*)
@@ -25,17 +28,33 @@ Group: Data
 data components for the mvn-scala-java8-compat package.
 
 
+%package license
+Summary: license components for the mvn-scala-java8-compat package.
+Group: Default
+
+%description license
+license components for the mvn-scala-java8-compat package.
+
+
 %prep
 %setup -q -n scala-java8-compat-0.7.0
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-scala-java8-compat
+cp LICENSE %{buildroot}/usr/share/package-licenses/mvn-scala-java8-compat/LICENSE
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0
 cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.jar
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0
 cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.pom
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.pom
 
 
 %files
@@ -45,3 +64,9 @@ cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/scala-lang/modules/
 %defattr(-,root,root,-)
 /usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.jar
 /usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.pom
+/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar
+/usr/share/java/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-scala-java8-compat/LICENSE
